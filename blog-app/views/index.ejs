@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Blog</h1>
+        <div>
+            <h2>Postări</h2>
+            <% if (posts.length > 0) { %>
+                <ul>
+                    <% posts.forEach((post, index) => { %>
+                        <li>
+                            <h3><%= post.title %></h3>
+                            <p><%= post.content %></p>
+                            <a href="/blog/edit/<%= index %>">Editare</a>
+                            <form action="/blog/delete/<%= index %>" method="POST" style="display:inline;">
+                                <button type="submit">Ștergere</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>Nu sunt postări.</p>
+            <% } %>
+        </div>
+        <div>
+            <h2>Adaugă o postare</h2>
+            <form action="/blog/new" method="POST">
+                <label for="title">Titlu:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="content">Conținut:</label>
+                <textarea id="content" name="content" required></textarea>
+                <button type="submit">Adaugă postare</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

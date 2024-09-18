@@ -1,0 +1,3 @@
+let posts = [];
+
+export { posts };
